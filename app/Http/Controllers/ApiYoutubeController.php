@@ -31,9 +31,13 @@ class ApiYoutubeController extends Controller
         }
 
         try {
-            return response()->json(
-                $repository->search($params)
-            );
+            $results = $repository->search($params);
+
+            if(count($results) > 0){
+                return $results;
+            }else{
+                return response()->json(['message' => 'No results found for the given keyword. Try another keyword.'], 404);
+            }
         } catch (\Google\Service\Exception $e) {
             $error = json_decode($e->getMessage())->error;
             return response()->json([
