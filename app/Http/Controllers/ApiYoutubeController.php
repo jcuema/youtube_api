@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repository\YoutubeRepository;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class ApiYoutubeController extends Controller
@@ -12,9 +11,8 @@ class ApiYoutubeController extends Controller
     /**
      * @param YoutubeRepository $repository
      * @param Request $request
-     * @return JsonResponse
      */
-    public function getSearch(YoutubeRepository $repository, Request $request): JsonResponse
+    public function getSearch(YoutubeRepository $repository, Request $request)
     {
         $params = $request->all();
 
