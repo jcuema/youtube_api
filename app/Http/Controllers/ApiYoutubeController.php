@@ -41,6 +41,10 @@ class ApiYoutubeController extends Controller
             return response()->json([
                 'message' => "Error retrieving information from youtube videos. The service returned the following message: {$error->message}"
             ], 400);
+        } catch (\GuzzleHttp\Exception\ConnectException $e) {
+            return response()->json([
+                'message' => "Error retrieving information from youtube videos. The service returned the following message: {$e->getMessage()}"
+            ], 400);
         }
 
     }
